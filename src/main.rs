@@ -11,8 +11,8 @@ fn handle_client(mut stream: TcpStream) -> Result<(), Error> {
             return Ok(());
         }
 
-        println!("client message:{:#?}", &buf[..bytes_read]);
         stream.write(&buf[..bytes_read])?;
+        println!("client message:{:#?}", String::from_utf8(buf[..bytes_read].to_vec()));
 
         thread::sleep(time::Duration::from_secs(1 as u64));
     }
